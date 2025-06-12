@@ -29,6 +29,6 @@ jobs:
         run: |
           echo "Running test on k6 cloud with project ID..."
           echo $K6_PROJECT_ID
-          k6 cloud load-test.js --project-id $K6_PROJECT_ID
+          k6 cloud load-test.js
 
 
