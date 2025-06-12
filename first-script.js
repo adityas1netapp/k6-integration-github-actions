@@ -5,7 +5,7 @@ export const options = {
     vus: 10,
     duration: '30s',
     cloud: {
-        projectID : 3776570
+        projectID : __PROJECT_ID__
     }
 }
 
