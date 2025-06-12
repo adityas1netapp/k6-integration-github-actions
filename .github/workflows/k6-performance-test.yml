@@ -25,10 +25,6 @@ jobs:
       - name: Run k6 Cloud Test with Project ID
         env:
           K6_CLOUD_TOKEN: ${{ secrets.K6_CLOUD_TOKEN }}
-          K6_PROJECT_ID: ${{ secrets.K6_PROJECT_ID }}
         run: |
           echo "Running test on k6 cloud with project ID..."
-          echo $K6_PROJECT_ID
-          k6 cloud load-test.js
-
-
+          k6 cloud first-script.js
