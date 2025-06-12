@@ -1,4 +1,4 @@
-name: Run k6 Cloud Test
+name: Run k6 Cloud Test with Project ID
 
 on:
   push:
@@ -22,10 +22,12 @@ jobs:
           sudo apt update
           sudo apt install k6 -y
 
-      - name: Run k6 Cloud Test
+      - name: Run k6 Cloud Test with Project ID
         env:
           K6_CLOUD_TOKEN: ${{ secrets.K6_CLOUD_TOKEN }}
+          K6_PROJECT_ID: ${{ secrets.K6_PROJECT_ID }}
         run: |
-          echo "Running test on k6 cloud..."
-          k6 cloud first-script.js
+          echo "Running test on k6 cloud with project ID..."
+          k6 cloud --project-id $K6_PROJECT_ID load-test.js
+
 
