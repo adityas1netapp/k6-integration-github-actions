@@ -24,11 +24,11 @@ jobs:
 
       - name: Prepare load.js with project ID
         run: |
-          sed "s/__PROJECT_ID__/${{ secrets.K6_PROJECT_ID }}/g" load.template.js > first-script.js
+          sed "s/__PROJECT_ID__/${{ secrets.K6_PROJECT_ID }}/g" load.template.js > load-test.js
 
       - name: Run k6 Cloud Test with Project ID
         env:
           K6_CLOUD_TOKEN: ${{ secrets.K6_CLOUD_TOKEN }}
         run: |
           echo "Running test on k6 cloud with project ID..."
-          k6 cloud first-script.js
+          k6 cloud load-test.js
