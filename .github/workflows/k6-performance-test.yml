@@ -21,10 +21,10 @@ jobs:
           echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
           sudo apt update
           sudo apt install k6 -y
-          
+
       - name: Prepare load.js with project ID
         run: |
-          sed "s/__PROJECT_ID__/${{ secrets.K6_PROJECT_ID }}/g" load.template.js > load.js
+          sed "s/__PROJECT_ID__/${{ secrets.K6_PROJECT_ID }}/g" load.template.js > first-script.js
 
       - name: Run k6 Cloud Test with Project ID
         env:
