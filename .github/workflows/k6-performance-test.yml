@@ -1,0 +1,29 @@
+name: Run k6 Performance Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:  # Allow manual trigger from GitHub UI
+
+jobs:
+  k6-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install k6
+        run: |
+          sudo apt update
+          sudo apt install -y gnupg software-properties-common
+          sudo gpg -k || true
+          curl -s https://dl.k6.io/key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/k6-archive-keyring.gpg
+          echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+          sudo apt update
+          sudo apt install k6 -y
+
+      - name: Run k6 Test
+        run: k6 run first-script.js
