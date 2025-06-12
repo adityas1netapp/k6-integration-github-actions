@@ -28,6 +28,7 @@ jobs:
           K6_PROJECT_ID: ${{ secrets.K6_PROJECT_ID }}
         run: |
           echo "Running test on k6 cloud with project ID..."
-          k6 cloud --project-id $K6_PROJECT_ID load-test.js
+          echo $K6_PROJECT_ID
+          k6 cloud load-test.js --project-id $K6_PROJECT_ID
 
 
